@@ -1,0 +1,27 @@
+<!--
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>board</ion-title>
+        </ion-toolbar>
+    </ion-header>
+-->
+
+<ion-content padding>
+    <ion-card>
+        <img src="{{ image.url }}" />
+        <div class="card-title">{{ image.text }}</div>
+        <div class="card-subtitle">41 Listings</div>
+        <div class="card-timer">{{ time }} sec</div>
+        <div class="buttons">
+            <button ion-button icon-start clear item-start (click)="onGood()">
+                <ion-icon name="navigate"></ion-icon>
+                Good
+            </button>
+            <div class="separator"></div>
+            <button ion-button icon-start clear item-end (click)="onBad()">
+                <ion-icon name="navigate"></ion-icon>
+                Bad
+            </button>
+        </div>
+    </ion-card>
+</ion-content>
