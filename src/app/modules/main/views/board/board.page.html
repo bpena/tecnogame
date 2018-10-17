@@ -11,16 +11,14 @@
         <img src="{{ image.url }}" />
         <div class="card-title">{{ image.text }}</div>
         <div class="card-subtitle">41 Listings</div>
-        <div class="card-timer">{{ time }} sec</div>
+        <div class="card-timer t{{ time }}">{{ time }} sec</div>
         <div class="buttons">
-            <button ion-button icon-start clear item-start (click)="onGood()">
-                <ion-icon name="navigate"></ion-icon>
-                Good
+            <button class="btn-validation btn-left" ion-button icon-start clear (click)="onGood()">
+                <ion-icon name="checkmark"></ion-icon>
             </button>
             <div class="separator"></div>
-            <button ion-button icon-start clear item-end (click)="onBad()">
-                <ion-icon name="navigate"></ion-icon>
-                Bad
+            <button class="btn-validation btn-right" ion-button icon-end clear (click)="onBad()">
+                <ion-icon name="close"></ion-icon>
             </button>
         </div>
     </ion-card>
