@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Config
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="config" (ngSubmit)="startGame(configForm)" #configForm>
+        <ion-item>
+            <ion-label>Tiempo de Juego</ion-label>
+            <ion-input type="number" formControlName="sessionTime"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Cantidad Maxima de diapositivas</ion-label>
+            <ion-input type="number" formControlName="slideQty"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Lista de palabras o frases</ion-label>
+            <ion-textarea placeholder="Lista de palabras o frases, una por linea" 
+                rows="5" formControlName="words"></ion-textarea>
+        </ion-item>
+        <button ion-button type="submit" [disabled]="!config.valid">Submit</button>
+    </form>
+</ion-content>

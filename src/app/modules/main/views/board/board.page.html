@@ -8,17 +8,27 @@
 
 <ion-content padding>
     <ion-card>
-        <img src="{{ image.url }}" />
-        <div class="card-title">{{ image.text }}</div>
-        <div class="card-subtitle">41 Listings</div>
-        <div class="card-timer t{{ time }}">{{ time }} sec</div>
-        <div class="buttons">
+        <img src="{{ slide.url }}" />
+        <div *ngIf="!stopped" class="game-title">{{ slide.text }}</div>
+        <div class="game-subtitle">41 Listings</div>
+        <div *ngIf="!stopped" class="game-timer t{{ time }}">{{ time }} sec</div>
+        <div *ngIf="stopped" (click)="startTimer()" class="game-timer t10 button">START</div>
+        <div *ngIf="showingResult" class="game-results">
+            <div class="results">
+                {{ goodCounter }} aciertos
+                <div *ngFor="let word of validWords">{{ word }}</div>
+            </div>
+        </div>
+        <button class="btn-config" ion-button icon-end clear (click)="openConfig()">
+            <ion-icon name="settings"></ion-icon>
+        </button>
+        <div *ngIf="!stopped" class="buttons">
             <button class="btn-validation btn-left" ion-button icon-start clear (click)="onGood()">
                 <ion-icon name="checkmark"></ion-icon>
             </button>
             <div class="separator"></div>
             <button class="btn-validation btn-right" ion-button icon-end clear (click)="onBad()">
-                <ion-icon name="close"></ion-icon>
+                <ion-icon name="share-alt"></ion-icon>
             </button>
         </div>
     </ion-card>

@@ -1,6 +1,9 @@
+import { Slide } from './../../models/slide';
+import { Router } from '@angular/router';
 import { MainService } from './../../services/main.service';
 import { Component, OnInit } from '@angular/core';
 import { timer, Subscriber, Subscription } from 'rxjs';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'app-board',
@@ -10,55 +13,77 @@ import { timer, Subscriber, Subscription } from 'rxjs';
 export class BoardPage implements OnInit {
     _timer = timer(1000, 1000);
     _subscribe: Subscription;
-    time: number = 10;
+    _time: number = 300;
+    time: number = 300;
+    stopped = true;
+    showingResult = false;
 
-    image: any;
+    slide: Slide;
 
     badCounter: number = 0;
     goodCounter: number = 0;
+    validWords: string[] = [];
 
-    constructor(private mainService: MainService) { }
+    constructor(private mainService: MainService, private router: Router) { }
 
     ngOnInit() {
-        this.startTimer();
-        this.mainService.image.subscribe(img => this.image = img);
+        this.mainService.config.subscribe(configValues => {
+            this._time = configValues.sessionTime;
+            this.time = configValues.sessionTime;
+        });
+        this.mainService.image.subscribe(slide => {
+            this.slide = slide;
+            if (isNullOrUndefined(this.slide.text)) {
+                this.endGame();
+            }
+        });
+    }
+
+    private endGame() {
+        this.validWords = this.mainService.validWords;
+        this.stopTimer();
+        this.showingResult = true;
+        this.mainService.restartWords();
     }
 
     private startTimer() {
-        this.time = 10;
+        this.time = this._time;
+        this.stopped = false;
+        this.showingResult = false;
+        this.validWords = [];
+        this.nextSlide();
         this._subscribe = this._timer.subscribe(() => this.tick());
     }
 
     private stopTimer() {
+        this.stopped = true;
         this._subscribe.unsubscribe();
-    }
-
-    private restartTimer() {
-        this.stopTimer();
-        this.startTimer();
     }
 
     private tick() {
         this.time--;
         if (this.time === 0) {
-            this.time = 10;
-            this.nextImage();
+            this.endGame();
         }
     }
 
     onGood() {
         this.goodCounter++;
-        this.nextImage();
-        this.restartTimer();
+        this.mainService.validAnswer();
+        this.nextSlide();
     }
 
     onBad() {
         this.badCounter++;
-        this.nextImage();
-        this.restartTimer();
+        this.nextSlide();
     }
 
-    private nextImage() {
-        this.mainService.updateImage();
+    private nextSlide() {
+        this.mainService.updateSlide();
+    }
+
+    openConfig() {
+        this.stopTimer();
+        this.router.navigateByUrl('/config');
     }
 }

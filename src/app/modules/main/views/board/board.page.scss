@@ -7,7 +7,11 @@ ion-card {
     max-height: 100%;
 }
 
-.card-title {
+.button {
+    cursor: pointer;
+}
+
+.game-title {
     position: absolute;
     top: 45%;
     font-size: 5.0em;
@@ -16,7 +20,7 @@ ion-card {
     color: #fff;
 }
 
-.card-subtitle {
+.game-subtitle {
     display: none;
     font-size: 1.0em;
     position: absolute;
@@ -25,12 +29,37 @@ ion-card {
     color: #fff;
 }
 
-.card-timer {
+.game-timer {
     font-size: 2.0em;
     position: absolute;
     top: 5%;
     width: 150px;
     color: #fff;
+}
+
+.game-results {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    right: 0;
+
+    .results {
+        background: rgba(0,0,0, 0.75);
+        border-radius: 15px;        
+        color: #ecf783;
+        display: inline-block;
+        font-size: 2em;
+        padding: 25px 39px;
+        text-align: left;
+
+        div {
+            color: white;
+            
+            :first-child {
+                margin-top: 10px;
+            }
+        }
+    }
 }
 
 .t10 { background-color: limegreen }
@@ -43,6 +72,19 @@ ion-card {
 .t3 { background-color: orangered }
 .t2 { background-color: red }
 .t1 { background-color: red }
+
+.btn-config {
+    background: transparent;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+
+    ion-icon {
+        font-size: 4em;
+        color: whitesmoke;
+    }
+}
+
 
 .buttons {
     display: flex;
