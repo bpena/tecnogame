@@ -49,6 +49,7 @@ export class BoardPage implements OnInit {
     private startTimer() {
         this.time = this._time;
         this.stopped = false;
+        this.goodCounter = 0;
         this.showingResult = false;
         this.validWords = [];
         this.nextSlide();
