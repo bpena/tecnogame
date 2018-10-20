@@ -1,3 +1,4 @@
+import { CommonsModule } from './../../../commons/commons.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,19 +9,20 @@ import { IonicModule } from '@ionic/angular';
 import { BoardPage } from './board.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: BoardPage
-  }
+    {
+        path: '',
+        component: BoardPage
+    }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [BoardPage]
+    imports: [
+        CommonModule,
+        CommonsModule,
+        FormsModule,
+        IonicModule,
+        RouterModule.forChild(routes),
+    ],
+    declarations: [BoardPage]
 })
-export class BoardPageModule {}
+export class BoardPageModule { }

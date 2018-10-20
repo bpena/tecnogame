@@ -11,14 +11,14 @@
         <img src="{{ slide.url }}" />
         <div *ngIf="!stopped" class="game-title">{{ slide.text }}</div>
         <div class="game-subtitle">41 Listings</div>
-        <div *ngIf="!stopped" class="game-timer t{{ time }}">{{ time }} sec</div>
-        <div *ngIf="stopped" (click)="startTimer()" class="game-timer t10 button">START</div>
         <div *ngIf="showingResult" class="game-results">
             <div class="results">
                 {{ goodCounter }} aciertos
                 <div *ngFor="let word of validWords">{{ word }}</div>
             </div>
         </div>
+        <div *ngIf="!stopped" class="game-timer t{{ time }}">{{ time | secondsToTime }}</div>
+        <div *ngIf="stopped" (click)="startTimer()" class="game-timer t10 button">START</div>
         <button class="btn-config" ion-button icon-end clear (click)="openConfig()">
             <ion-icon name="settings"></ion-icon>
         </button>
