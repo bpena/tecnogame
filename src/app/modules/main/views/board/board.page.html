@@ -8,7 +8,6 @@
 
 <ion-content padding>
     <ion-card>
-<<<<<<< HEAD
         <img src="{{ slide.url }}" />
         <div *ngIf="!stopped" class="game-title">{{ slide.text }}</div>
         <div class="game-subtitle">41 Listings</div>
@@ -24,23 +23,12 @@
             <ion-icon name="settings"></ion-icon>
         </button>
         <div *ngIf="!stopped" class="buttons">
-=======
-        <img src="{{ image.url }}" />
-        <div class="card-title">{{ image.text }}</div>
-        <div class="card-subtitle">41 Listings</div>
-        <div class="card-timer t{{ time }}">{{ time }} sec</div>
-        <div class="buttons">
->>>>>>> 29e0db2c469f8938724845e6738016c91e413252
             <button class="btn-validation btn-left" ion-button icon-start clear (click)="onGood()">
                 <ion-icon name="checkmark"></ion-icon>
             </button>
             <div class="separator"></div>
             <button class="btn-validation btn-right" ion-button icon-end clear (click)="onBad()">
-<<<<<<< HEAD
                 <ion-icon name="share-alt"></ion-icon>
-=======
-                <ion-icon name="close"></ion-icon>
->>>>>>> 29e0db2c469f8938724845e6738016c91e413252
             </button>
         </div>
     </ion-card>
