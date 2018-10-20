@@ -57,7 +57,9 @@ export class BoardPage implements OnInit {
 
     private stopTimer() {
         this.stopped = true;
-        this._subscribe.unsubscribe();
+        if (!isNullOrUndefined(this._subscribe)) {
+            this._subscribe.unsubscribe();
+        }
     }
 
     private tick() {
