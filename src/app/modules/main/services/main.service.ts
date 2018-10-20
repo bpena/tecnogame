@@ -20,10 +20,7 @@ export class MainService {
     private configValues: Config = {
         sessionTime: 300,
         slideQty: 25,
-        words: `São Paulo
-Amsterdam
-San Francisco
-Madison`
+        words: `Kabuto,Ciclope,Perro,Pedro,Roca,Spock,Mario,Zelda,Pac-Man,Konami,Sony,Sega,Nintendo,Atari`
     }
     private words: string[];
     private _validWords: string[];
@@ -44,7 +41,7 @@ Madison`
     }
 
     restartWords() {
-        this.words = this.configValues.words.split(/[\n|,]+/);
+        this.words = this.configValues.words.split(/[\n|,]+/).sort((a, b) => a > b ? 1 : -1);
     }
 
     get validWords() {
